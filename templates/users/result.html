@@ -1,0 +1,38 @@
+{% load exam_tag %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{{title}}</title>
+</head>
+<body>
+	<section class="">
+		<p style="text-align: center;"><a href="{% url 'users:quiz_logout' %}">Logout</a></p>
+		{% if not is_superuser %}
+			<div class="">
+				<div class="">
+					<h3 class="">Test Result</h3>
+				</div>
+				<div class="">
+					<p>mark : {{ mark }}</p>
+				</div><!-- content -->
+			</div><!-- test -->
+		{% else %}
+			<table border="1">
+				<tr>
+					<th>Name</th>
+					<th>mark</th>
+				</tr>
+				{% for user_test in user_tests %}
+					<tr>
+						<td>{{ user_test.user.username }}</td>
+						<td>{{ user_test.test_mark }}</td>
+					</tr>
+				{% endfor %}
+			</table>
+		{% endif %}
+
+	</section><!-- #content > .content-box-->
+</body>
+</html>

@@ -1,0 +1,48 @@
+{% load exam_tag %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{{title}}</title>
+</head>
+<body>
+	<section class="">
+		<div class="">
+			<div class="">
+				<p style="text-align: center;"><a href="{% url 'users:quiz_logout' %}">Logout</a></p>
+				<h3 class="">Take your test</h3>
+				<p>Assess Your Knowledge. Take a test.</p>
+			</div>
+			<div class="">
+				<form action="." class="" method="post">
+					{% csrf_token %}
+					<ul>
+
+					{% for question in questions %}
+						<li class="">
+							<div class="">
+								<h3>{{question.question}}</h3>
+								<div class="">
+									<div class="">
+										{% for answer in question|get_answers %}
+									        <label for="id_{{answer.pk}}" class="btn-radio">
+									          <input type="radio" id="id_{{answer.pk}}" name="answer_{{question.pk}}" value="{{answer.pk}}">
+									          <span>{{answer}}</span>
+									        </label>
+										{% endfor %}
+									</div>
+								</div><!-- answers -->
+							</div><!-- right -->
+						</li>
+					{% endfor %}
+
+					</ul>
+					<button type="submit">Submit</button>
+				</form>
+			</div><!-- content -->
+
+		</div><!-- test -->
+	</section><!-- #content > .content-box-->
+</body>
+</html>

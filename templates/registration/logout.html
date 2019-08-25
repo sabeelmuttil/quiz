@@ -1,0 +1,14 @@
+{% extends "box_base.html" %}
+{% load i18n %}
+{% load tz %}
+{% load static %}
+
+{% block content %}
+<div class="head">
+	<h2>{{title}}</h2>
+	<p>Successfully Logout</p>
+</div>
+<div class="content logout right">
+	<a href="{% url 'users:enter' %}" class="button">Log in</a>
+</div>
+{% endblock %}
